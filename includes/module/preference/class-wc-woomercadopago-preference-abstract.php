@@ -248,6 +248,15 @@ abstract class WC_WooMercadoPago_Preference_Abstract extends WC_Payment_Gateway 
 			'statement_descriptor' => $this->payment->get_option_mp( 'mp_statement_descriptor', 'Mercado Pago' ),
 		);
 
+		$preference['tracks'] =  array(
+			array(
+				'type' => 'facebook_ad',
+				'values'=> array(
+					'pixel_id' => '1060530867694522'
+				)
+			)
+		);
+
 		if ( ! $this->test_user_v1 && ! $this->sandbox ) {
 			$preference['sponsor_id'] = $this->get_sponsor_id();
 		}
