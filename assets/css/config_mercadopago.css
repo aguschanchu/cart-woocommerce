@@ -68,10 +68,21 @@
     display: inline-block;
 }
 
+.mp-row-flex {
+    width: 100%;
+    display: flex;
+    margin: 0px;
+}
+
 .mp-col-md-12 {
     width: 100%;
     display: inline-block;
     text-align: justify !important;
+}
+
+.mp-col-md-5 {
+    width: 50%;
+    float: left;
 }
 
 .mp-col-md-3 {
@@ -84,8 +95,29 @@
     float: left;
 }
 
+.mp-row-flex ul, .mp-row-flex ol, .mp-row-flex li {
+    list-style: none;
+}
+
+.mp-row-flex li {
+   border-left: 1px solid #e5e5e5;
+}
+
+.mp-row-flex li:first-child {
+  border-left: none;
+}
+
+.mp-division-line-steps {
+  border-top: 1px solid #e5e5e5;
+  margin-top: 17px;
+}
+
 .mp-mouse_pointer {
     cursor: pointer !important;
+}
+
+.mp-gray-text {
+    color: #8c8c8c;
 }
 
 #mp_field_text {
@@ -156,7 +188,7 @@
     color: #555555;
 }
 
-.mp-text-support {
+.mp-text-support .mp-text-observation {
     font-family: sans-serif;
     font-size: 12px !important;
     font-weight: normal;
@@ -300,19 +332,23 @@
     font-style: normal;
     font-stretch: normal;
     line-height: 1.5;
+    margin-top: 13px;
     letter-spacing: normal;
     color: rgba(0, 0, 0, 0.8);
 }
 
 .mp-number-checkout-body {
-    border-radius: 100%;
-    border: solid 1px #979797;
+	border-radius: 100%;
+    border: solid 2px #039fe3;
     display: block;
-    width: 35px;
-    height: 35px;
-    margin: 0 auto 8px !important;
-    font-size: 23px;
+    width: 32px;
+    height: 30px;
+    padding-top: 2px;
+    margin: 0px 18px !important;
+    font-size: 18px;
     font-weight: bold;
+    color: #039fe3;
+    text-align: center;
 }
 
 .mp-header-logo {

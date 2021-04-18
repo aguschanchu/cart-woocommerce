@@ -182,6 +182,7 @@ class WC_WooMercadoPago_Credentials {
 		update_option( '_collector_id_v1', '', true );
 		update_option( '_all_payment_methods_v0', array(), true );
 		update_option( '_all_payment_methods_ticket', '[]', true );
+		update_option( '_mp_payment_methods_pix', '', true );
 		update_option( '_can_do_currency_conversion_v1', false, true );
 	}
 
@@ -332,6 +333,44 @@ class WC_WooMercadoPago_Credentials {
 
 		update_option( '_all_payment_methods_v0', implode( ',', $arr ), true );
 		update_option( '_checkout_payments_methods', $cho, true );
+	}
+
+	/**
+	 *
+	 * Update Pix Method function
+	 *
+	 * @param MP         $mp_instance Mp instance.
+	 * @param string     $access_token Access token.
+	 * @param array|null $payments_response Payment response.
+	 * @return void
+	 */
+	public static function update_pix_method( $mp_instance, $access_token, $payments_response = null ) {
+		if ( empty( $access_token ) || empty( $mp_instance ) ) {
+			return;
+		}
+
+		if ( empty( $payments_response ) ) {
+			$payments_response = self::get_payment_response( $mp_instance, $access_token );
+		}
+
+		if ( empty( $payments_response ) ) {
+			return;
+		}
+
+		$payment_methods_pix = array();
+		$accepted            = array( 'pix' );
+
+		foreach ( $payments_response as $payment ) {
+			if ( in_array( $payment['id'], $accepted, true ) ) {
+				$payment_methods_pix[ $payment['id'] ] = array(
+					'id'               => $payment['id'],
+					'name'             => $payment['name'],
+					'secure_thumbnail' => $payment['secure_thumbnail'],
+				);
+			}
+		}
+
+		update_option( '_mp_payment_methods_pix', $payment_methods_pix, true );
 	}
 
 	/**

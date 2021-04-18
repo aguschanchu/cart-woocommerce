@@ -376,6 +376,11 @@ abstract class WC_WooMercadoPago_Hook_Abstract {
 			) {
 				WC_WooMercadoPago_Credentials::update_payment_methods( $this->mp_instance, $value );
 				WC_WooMercadoPago_Credentials::update_ticket_method( $this->mp_instance, $value );
+				$wc_country = WC_WooMercadoPago_Module::get_woocommerce_default_country();
+				$site_id    = get_option( '_site_id_v1', '' );
+				if ( ( 'BR' === $wc_country && '' === $site_id ) || ( 'MLB' === $site_id ) ) {
+					WC_WooMercadoPago_Credentials::update_pix_method( $this->mp_instance, $value );
+				}
 			}
 			return true;
 		}

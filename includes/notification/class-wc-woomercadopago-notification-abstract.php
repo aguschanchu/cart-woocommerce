@@ -208,6 +208,14 @@ abstract class WC_WooMercadoPago_Notification_Abstract {
 						}
 					}
 					break;
+				case 'WC_WooMercadoPago_Pix_Gateway':
+					if ( 'no' === get_option( 'stock_reduce_mode', 'no' ) ) {
+						$order->payment_complete();
+						if ( 'completed' !== $payment_completed_status ) {
+							$order->update_status( self::get_wc_status_for_mp_status( 'approved' ) );
+						}
+					}
+					break;
 			}
 		}
 	}
@@ -223,6 +231,24 @@ abstract class WC_WooMercadoPago_Notification_Abstract {
 		if ( $this->can_update_order_status( $order ) ) {
 			$order->update_status( self::get_wc_status_for_mp_status( 'pending' ) );
 			switch ( $used_gateway ) {
+				case 'WC_WooMercadoPago_Pix_Gateway':
+					$notes    = $order->get_customer_order_notes();
+					$has_note = false;
+					if ( count( $notes ) > 1 ) {
+						$has_note = true;
+						break;
+					}
+					if ( ! $has_note ) {
+						$order->add_order_note(
+							'Mercado Pago: ' . __( 'Waiting for the PIX payment.', 'woocommerce-mercadopago' )
+						);
+						$order->add_order_note(
+							'Mercado Pago: ' . __( 'Waiting for the PIX payment.', 'woocommerce-mercadopago' ),
+							1,
+							false
+						);
+					}
+					break;
 				case 'WC_WooMercadoPago_Ticket_Gateway':
 					$notes    = $order->get_customer_order_notes();
 					$has_note = false;

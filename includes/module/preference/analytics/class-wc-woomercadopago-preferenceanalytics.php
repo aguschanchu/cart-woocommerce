@@ -53,6 +53,15 @@ class WC_WooMercadoPago_PreferenceAnalytics {
 	}
 
 	/**
+	 * Get_pix_settings function
+	 *
+	 * @return array get_pix_settings
+	 */
+	public function get_pix_settings() {
+		return $this->get_settings( 'woocommerce_woo-mercado-pago-pix_settings' );
+	}
+
+	/**
 	 * Get_settings function
 	 *
 	 * @param [type] $option .

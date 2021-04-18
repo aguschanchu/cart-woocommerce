@@ -3,12 +3,12 @@
 window.addEventListener('load', function() {
   //remove link breadcrumb, header and save button
   document.querySelector('.wc-admin-breadcrumb').style.display = 'none';
-	if (document.querySelector('.mp-header-logo') !== null){
-		document.querySelector('.mp-header-logo').style.display = 'none';
-	} else {
+  if (document.querySelector('.mp-header-logo') !== null){
+    document.querySelector('.mp-header-logo').style.display = 'none';
+  } else {
     var pElement = document.querySelectorAll('#mainform > p');
     pElement[0] !== undefined ? pElement[0].style.display = 'none' : null;
-	}
+  }
   document.querySelector('p.submit').style.display = 'none';
 
   var h2s = document.querySelectorAll('h2');
@@ -43,18 +43,18 @@ window.addEventListener('load', function() {
   removeLabel[0].children[0].children[1].style.display = 'none';
 
   //clone save button
-  var cloneSaveButton = document.getElementById('woocommerce_woo-mercado-pago-ticket_checkout_btn_save');
-  if (document.getElementById('woocommerce_woo-mercado-pago-ticket_checkout_homolog_title') !== null || document.getElementById('woocommerce_woo-mercado-pago-ticket_checkout_credential_description_prod') !== null) {
-    document.getElementById('woocommerce_woo-mercado-pago-ticket_checkout_credential_description_prod').nextElementSibling.append(cloneSaveButton.cloneNode(true));
+  var cloneSaveButton = document.getElementById('woocommerce_woo-mercado-pago-pix_checkout_btn_save');
+  if (document.getElementById('woocommerce_woo-mercado-pago-pix_checkout_homolog_title') !== null || document.getElementById('woocommerce_woo-mercado-pago-pix_checkout_credential_description_prod') !== null) {
+    document.getElementById('woocommerce_woo-mercado-pago-pix_checkout_credential_description_prod').nextElementSibling.append(cloneSaveButton.cloneNode(true));
   }
 
-  if (document.getElementById('woocommerce_woo-mercado-pago-ticket_checkout_homolog_title') !== null || document.getElementById('woocommerce_woo-mercado-pago-ticket_checkout_ticket_options_title') !== null) {
-    document.getElementById('woocommerce_woo-mercado-pago-ticket_checkout_ticket_options_title').nextElementSibling.append(cloneSaveButton.cloneNode(true));
-    document.getElementById('woocommerce_woo-mercado-pago-ticket_checkout_advanced_settings').nextElementSibling.append(cloneSaveButton.cloneNode(true));
-    document.getElementById('woocommerce_woo-mercado-pago-ticket_checkout_ticket_payments_description').nextElementSibling.append(cloneSaveButton.cloneNode(true));
-    document.getElementById('woocommerce_woo-mercado-pago-ticket_checkout_payments_advanced_description').nextElementSibling.append(cloneSaveButton.cloneNode(true));
+  if ((document.getElementById('woocommerce_woo-mercado-pago-pix_checkout_homolog_title') !== null || document.getElementById('woocommerce_woo-mercado-pago-pix_checkout_pix_options_title') !== null) && document.getElementById('woocommerce_woo-mercado-pago-pix_checkout_steps_pix') === null ) {
+    document.getElementById('woocommerce_woo-mercado-pago-pix_checkout_pix_options_title').nextElementSibling.append(cloneSaveButton.cloneNode(true));
+    document.getElementById('woocommerce_woo-mercado-pago-pix_checkout_advanced_settings').nextElementSibling.append(cloneSaveButton.cloneNode(true));
+    document.getElementById('woocommerce_woo-mercado-pago-pix_checkout_pix_payments_description').nextElementSibling.append(cloneSaveButton.cloneNode(true));
+    document.getElementById('woocommerce_woo-mercado-pago-pix_checkout_payments_advanced_description').nextElementSibling.append(cloneSaveButton.cloneNode(true));
 
-    var collapse_title = document.querySelector('#woocommerce_woo-mercado-pago-ticket_checkout_advanced_settings');
+    var collapse_title = document.querySelector('#woocommerce_woo-mercado-pago-pix_checkout_advanced_settings');
     var collapse_table = collapse_title.nextElementSibling;
     collapse_table.style.display = 'none';
     collapse_title.style.cursor = 'pointer';
@@ -78,9 +78,9 @@ window.addEventListener('load', function() {
     };
 
     //collpase Configuración Avanzada
-    var collapse_title_2 = document.querySelector('#woocommerce_woo-mercado-pago-ticket_checkout_ticket_payments_advanced_title');
-    var collapse_table_2 = document.querySelector('#woocommerce_woo-mercado-pago-ticket_checkout_payments_advanced_description').nextElementSibling;
-    var collapse_description_2 = document.querySelector('#woocommerce_woo-mercado-pago-ticket_checkout_payments_advanced_description');
+    var collapse_title_2 = document.querySelector('#woocommerce_woo-mercado-pago-pix_checkout_pix_payments_advanced_title');
+    var collapse_table_2 = document.querySelector('#woocommerce_woo-mercado-pago-pix_checkout_payments_advanced_description').nextElementSibling;
+    var collapse_description_2 = document.querySelector('#woocommerce_woo-mercado-pago-pix_checkout_payments_advanced_description');
     collapse_table_2.style.display = 'none';
     collapse_description_2.style.display = 'none';
     collapse_title_2.style.cursor = 'pointer';
@@ -107,7 +107,7 @@ window.addEventListener('load', function() {
     };
 
     //payment methods
-    var tablePayments = document.querySelector('#woocommerce_woo-mercado-pago-ticket_checkout_ticket_payments_description').nextElementSibling.getAttribute('class');
+    var tablePayments = document.querySelector('#woocommerce_woo-mercado-pago-pix_checkout_pix_payments_description').nextElementSibling.getAttribute('class');
     var mp_input_payments = document.querySelectorAll('.' + tablePayments + ' td.forminp label');
     for (var ip = 0; ip < mp_input_payments.length; ip++) {
       mp_input_payments[ip].id = 'mp_input_payments_mt';
@@ -117,7 +117,7 @@ window.addEventListener('load', function() {
     var offline_payment_translate = '';
     var offlineChecked = '';
     var countOfflineChecked = 0;
-    var offlineInputs = document.querySelectorAll('.ticket_payment_method_select');
+    var offlineInputs = document.querySelectorAll('.pix_payment_method_select');
     for (var ioff = 0; ioff < offlineInputs.length; ioff++) {
       offline_payment_translate = offlineInputs[ioff].getAttribute('data-translate');
       if (offlineInputs[ioff].checked === true) {
@@ -159,7 +159,7 @@ window.addEventListener('load', function() {
 //Offline payments
 window.completeOfflineCheckbox = function () {
   var offlineCheck = document.getElementById('checkmeoff').checked;
-  var offlineInputs = document.querySelectorAll('.ticket_payment_method_select');
+  var offlineInputs = document.querySelectorAll('.pix_payment_method_select');
   for (var i = 0; i < offlineInputs.length; i++) {
     if (offlineCheck === true) {
       offlineInputs[i].checked = true;
