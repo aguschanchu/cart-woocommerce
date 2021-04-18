@@ -218,6 +218,7 @@ class WC_WooMercadoPago_Module extends WC_WooMercadoPago_Configs {
 		include_once dirname( __FILE__ ) . '/../payments/hooks/class-wc-woomercadopago-hook-basic.php';
 		include_once dirname( __FILE__ ) . '/../payments/hooks/class-wc-woomercadopago-hook-custom.php';
 		include_once dirname( __FILE__ ) . '/../payments/hooks/class-wc-woomercadopago-hook-ticket.php';
+		include_once dirname( __FILE__ ) . '/../payments/hooks/class-wc-woomercadopago-hook-pix.php';
 	}
 
 	/**
@@ -239,6 +240,7 @@ class WC_WooMercadoPago_Module extends WC_WooMercadoPago_Configs {
 		include_once dirname( __FILE__ ) . '/preference/class-wc-woomercadopago-preference-basic.php';
 		include_once dirname( __FILE__ ) . '/preference/class-wc-woomercadopago-preference-custom.php';
 		include_once dirname( __FILE__ ) . '/preference/class-wc-woomercadopago-preference-ticket.php';
+		include_once dirname( __FILE__ ) . '/preference/class-wc-woomercadopago-preference-pix.php';
 		include_once dirname( __FILE__ ) . '/preference/analytics/class-wc-woomercadopago-preferenceanalytics.php';
 	}
 
@@ -252,6 +254,7 @@ class WC_WooMercadoPago_Module extends WC_WooMercadoPago_Configs {
 		include_once dirname( __FILE__ ) . '/../payments/class-wc-woomercadopago-basic-gateway.php';
 		include_once dirname( __FILE__ ) . '/../payments/class-wc-woomercadopago-custom-gateway.php';
 		include_once dirname( __FILE__ ) . '/../payments/class-wc-woomercadopago-ticket-gateway.php';
+		include_once dirname( __FILE__ ) . '/../payments/class-wc-woomercadopago-pix-gateway.php';
 		add_filter( 'woocommerce_payment_gateways', array( $this, 'set_payment_gateway' ) );
 	}
 
@@ -338,7 +341,7 @@ class WC_WooMercadoPago_Module extends WC_WooMercadoPago_Configs {
 	 * @return array
 	 */
 	public function woomercadopago_settings_link( $links ) {
-		$links_mp       = $this->define_link_country();
+		$links_mp       = self::define_link_country();
 		$plugin_links   = array();
 		$plugin_links[] = '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=checkout' ) . '">' . __( 'Set up', 'woocommerce-mercadopago' ) . '</a>';
 		$plugin_links[] = '<a target="_blank" href="https://wordpress.org/support/plugin/woocommerce-mercadopago/reviews/?rate=5#new-post">' . __( 'Your opinion helps us get better', 'woocommerce-mercadopago' ) . '</a>';
@@ -354,7 +357,6 @@ class WC_WooMercadoPago_Module extends WC_WooMercadoPago_Configs {
 	 * @return array
 	 */
 	public static function define_link_country() {
-		$wc_country    = get_option( 'woocommerce_default_country', '' );
 		$sufix_country = 'AR';
 		$country       = array(
 			'AR' => array( // Argentinian.
@@ -393,14 +395,26 @@ class WC_WooMercadoPago_Module extends WC_WooMercadoPago_Configs {
 				'translate' => 'es',
 			),
 		);
-		if ( '' !== $wc_country ) {
-			$sufix_country = strlen( $wc_country ) > 2 ? substr( $wc_country, 0, 2 ) : $wc_country;
-		}
 
-		$sufix_country = strtoupper( $sufix_country );
+		$sufix_country = strtoupper( self::get_woocommerce_default_country() );
 		$links_country = array_key_exists( $sufix_country, $country ) ? $country[ $sufix_country ] : $country['AR'];
 
 		return $links_country;
+	}
+
+	/**
+	 *
+	 * Get Woocommerce default country configured
+	 *
+	 * @return string
+	 */
+	public static function get_woocommerce_default_country() {
+		$wc_country = get_option( 'woocommerce_default_country', '' );
+		if ( '' !== $wc_country ) {
+			$wc_country = strlen( $wc_country ) > 2 ? substr( $wc_country, 0, 2 ) : $wc_country;
+		}
+
+		return $wc_country;
 	}
 
 	/**

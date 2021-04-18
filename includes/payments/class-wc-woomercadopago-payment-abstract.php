@@ -570,21 +570,6 @@ class WC_WooMercadoPago_Payment_Abstract extends WC_Payment_Gateway {
 	}
 
 	/**
-	 * Get Mercado Pago Description
-	 *
-	 * @param string $description description.
-	 * @return string
-	 */
-	public function get_method_mp_description( $description ) {
-		return '<div class="mp-header-logo">
-            <div class="mp-left-header">
-                <img src="' . plugins_url( '../assets/images/mplogo.png', plugin_dir_path( __FILE__ ) ) . '">
-            </div>
-            <div>' . $description . '</div>
-        </div>';
-	}
-
-	/**
 	 * Update Option
 	 *
 	 * @param string $key key.
@@ -902,8 +887,13 @@ class WC_WooMercadoPago_Payment_Abstract extends WC_Payment_Gateway {
 	 * @return array
 	 */
 	public function field_enabled( $label ) {
+		$title_enable = __( 'Activate checkout', 'woocommerce-mercadopago' );
+		if ( 'Pix' === $label ) {
+			$title_enable = __( 'Activate Pix in the checkout', 'woocommerce-mercadopago' );
+		}
+
 		return array(
-			'title'       => __( 'Activate checkout', 'woocommerce-mercadopago' ),
+			'title'       => $title_enable,
 			'type'        => 'select',
 			'default'     => 'no',
 			'description' => __( 'Activate the Mercado Pago experience at the checkout of your store.', 'woocommerce-mercadopago' ),

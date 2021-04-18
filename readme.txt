@@ -2,9 +2,9 @@
 Contributors: mercadopago, mercadolivre, claudiosanches, marcelohama
 Tags: ecommerce, mercadopago, woocommerce
 Requires at least: 4.9.10
-Tested up to: 5.6.2
+Tested up to: 5.7
 Requires PHP: 5.6
-Stable tag: 5.0.1
+Stable tag: 5.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,7 +18,7 @@ To install it, **you don't need to have technical knowledge:** you can follow th
 
 ### What to do with the Mercado Pago Plugin?
 * Activate **Checkout Pro** to offer logged-in payments with money in Mercado Pago account, saved cards and off means.
-* Offer payments without the need of having a Mercado Pago account, through the **Custom Checkout** for cards and off means (cash or bank transfer).
+* Offer payments without the need of having a Mercado Pago account, through the **Custom Checkout** for cards and off means, such as cash, bank transfer and PIX (only in Brazil).
 * Automatically convert the currency of your products: from Mexican pesos to U.S. dollars and vice versa.
 * Sell in **installments** and offer the current promotions in Checkout Pro or apply your own discount coupon in Custom Checkout.
 * Test your store before going into production with our Sandbox environment.
@@ -69,6 +69,18 @@ The configuration of sending emails must be done from the WooCommerce administra
 
 If you have already reviewed the documentation and have not found a solution, you can contact our support team through their [contact form](https://www.mercadopago.com.ar/developers/es/support/). Please note that we guarantee a response within {7 days} of your query.
 
+= How can I set up PIX as a payment method? =
+
+PIX is a payment method that exists only in Brazil.
+
+To enable PIX as a payment method in the Custom Checkout of your store, you need to have your key registered in Mercado Pago. [See how to do it](https://www.mercadopago.com.br/stop/pix?url=https%3A%2F%2Fwww.mercadopago.com.br%2Fadmin-pix-keys%2Fmy-keys&authentication_mode=required).
+
+After registering the key, log into the WooCommerce administrator and navigate to the **Payments** section.
+
+Look for the option **Pague com PIX**, configure it and activate PIX.
+
+You can set up a time limit for customers to pay after they receive the code, among other settings.
+
 == Installation ==
 
 = Minimum Technical Requirements =
@@ -116,6 +128,14 @@ Set up both the plugin and the checkouts you want to activate on your payment av
 Check out our <a href="https://www.mercadopago.com.br/developers/pt/plugins_sdks/plugins/official/woo-commerce/">official documentation</a> for more information on the specific fields to configure.
 
 == Changelog ==
+= v5.1.0 (29/03/2021) =
+* Features
+ - Added new Pix Gateway for Brazil
+ - Added Payment type at order panel
+
+* Bug fixes
+ - Fixed post in configuration page, removed html
+
 = v5.0.1 (10/03/2021) =
 * Features
  - Compatibility with old notification urls

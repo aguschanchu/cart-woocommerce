@@ -30,8 +30,9 @@ class WC_WooMercadoPago_Preference_Ticket extends WC_WooMercadoPago_Preference_A
 	 */
 	public function __construct( $payment, $order, $ticket_checkout ) {
 		parent::__construct( $payment, $order, $ticket_checkout );
+		$date_expiration                        = $payment->get_option_mp( 'date_expiration', '' );
 		$this->preference                       = $this->make_commum_preference();
-		$this->preference['date_of_expiration'] = $this->get_date_of_expiration( $payment );
+		$this->preference['date_of_expiration'] = $this->get_date_of_expiration( $date_expiration );
 		$this->preference['transaction_amount'] = $this->get_transaction_amount();
 		$this->preference['description']        = implode( ', ', $this->list_of_items );
 		$this->preference['payment_method_id']  = $this->checkout['paymentMethodId'];
@@ -82,22 +83,6 @@ class WC_WooMercadoPago_Preference_Ticket extends WC_WooMercadoPago_Preference_A
 		$internal_metadata            = parent::get_internal_metadata();
 		$merge_array                  = array_merge( $internal_metadata, $this->get_internal_metadata_ticket() );
 		$this->preference['metadata'] = $merge_array;
-	}
-
-	/**
-	 * Get date of expiration
-	 *
-	 * @param WC_WooMercadoPago_Ticket_Gateway $payment Payment.
-	 * @return string date
-	 */
-	public function get_date_of_expiration( WC_WooMercadoPago_Ticket_Gateway $payment = null ) {
-		$date_expiration = ! is_null( $payment )
-			? $payment->get_option_mp( 'date_expiration' )
-			: $this->get_option( 'date_expiration', '' );
-
-		if ( '' !== $date_expiration ) {
-			return gmdate( 'Y-m-d\TH:i:s.000O', strtotime( '+' . $date_expiration . ' days' ) );
-		}
 	}
 
 	/**

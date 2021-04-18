@@ -8,7 +8,12 @@ window.addEventListener('load', function() {
 
   //remove link breadcrumb, header and save button
   document.querySelector('.wc-admin-breadcrumb').style.display = 'none';
-  document.querySelector('.mp-header-logo').style.display = 'none';
+	if (document.querySelector('.mp-header-logo') !== null){
+		document.querySelector('.mp-header-logo').style.display = 'none';
+	} else {
+    var pElement = document.querySelectorAll('#mainform > p');
+    pElement[0] !== undefined ? pElement[0].style.display = 'none' : null;
+	}
   document.querySelector('#_wpnonce').parentElement.style.display = 'none';
 
   var h2s = document.querySelectorAll('h2');

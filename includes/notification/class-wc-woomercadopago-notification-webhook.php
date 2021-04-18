@@ -156,7 +156,10 @@ class WC_WooMercadoPago_Notification_Webhook extends WC_WooMercadoPago_Notificat
 				$order->update_meta_data( __( 'Buyer email', 'woocommerce-mercadopago' ), $data['payer']['email'] );
 			}
 			if ( ! empty( $data['payment_type_id'] ) ) {
-				$order->update_meta_data( __( 'Payment method', 'woocommerce-mercadopago' ), $data['payment_type_id'] );
+				$order->update_meta_data( __( 'Payment type', 'woocommerce-mercadopago' ), $data['payment_type_id'] );
+			}
+			if ( ! empty( $data['payment_method_id'] ) ) {
+				$order->update_meta_data( __( 'Payment method', 'woocommerce-mercadopago' ), $data['payment_method_id'] );
 			}
 			$order->update_meta_data(
 				'Mercado Pago - Payment ' . $data['id'],
@@ -174,7 +177,10 @@ class WC_WooMercadoPago_Notification_Webhook extends WC_WooMercadoPago_Notificat
 				update_post_meta( $order->id, __( 'Buyer email', 'woocommerce-mercadopago' ), $data['payer']['email'] );
 			}
 			if ( ! empty( $data['payment_type_id'] ) ) {
-				update_post_meta( $order->id, __( 'Payment method', 'woocommerce-mercadopago' ), $data['payment_type_id'] );
+				update_post_meta( $order->id, __( 'Payment type', 'woocommerce-mercadopago' ), $data['payment_type_id'] );
+			}
+			if ( ! empty( $data['payment_method_id'] ) ) {
+				update_post_meta( $order->id, __( 'Payment method', 'woocommerce-mercadopago' ), $data['payment_method_id'] );
 			}
 			update_post_meta(
 				$order->id,
