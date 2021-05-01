@@ -7,8 +7,6 @@
  * License - https://www.gnu.org/licenses/gpl.html GPL version 2 or higher
  *
  * @package MercadoPago
- * @category Template
- * @author Mercado Pago
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
