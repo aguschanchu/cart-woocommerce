@@ -7,8 +7,6 @@
  * License - https://www.gnu.org/licenses/gpl.html GPL version 2 or higher
  *
  * @package MercadoPago
- * @category Includes
- * @author Mercado Pago
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -579,7 +577,7 @@ class WC_WooMercadoPago_Payment_Abstract extends WC_Payment_Gateway {
 	public function update_option( $key, $value = '' ) {
 		if ( 'enabled' === $key && 'yes' === $value ) {
 			if ( empty( $this->mp->get_access_token() ) ) {
-				$message = __( 'Configure your credentials to enable Mercado Pago payment methods.' );
+				$message = __( 'Configure your credentials to enable Mercado Pago payment methods.', 'woocommerce-mercadopago' );
 				$this->log->write_log( __FUNCTION__, $message );
 				echo wp_json_encode(
 					array(
@@ -1356,7 +1354,7 @@ class WC_WooMercadoPago_Payment_Abstract extends WC_Payment_Gateway {
 				'</a>'
 			),
 			'default'     => '',
-			'desc_tip'    => __( 'IPN (Instant Payment Notification) is a notification of events that take place on your platform and that is sent from one server to another through an HTTP POST call. See more information in our guides.', 'woocommerce-services' ),
+			'desc_tip'    => __( 'IPN (Instant Payment Notification) is a notification of events that take place on your platform and that is sent from one server to another through an HTTP POST call. See more information in our guides.', 'woocommerce-mercadopago' ),
 		);
 	}
 
@@ -1419,7 +1417,7 @@ class WC_WooMercadoPago_Payment_Abstract extends WC_Payment_Gateway {
 			'type'        => 'select',
 			'default'     => 'no',
 			'description' => __( 'Accept and reject payments automatically. Do you want us to activate it?', 'woocommerce-mercadopago' ),
-			'desc_tip'    => __( 'If you activate binary mode you will not be able to leave pending payments. This can affect fraud prevention. Leave it idle to be backed by our own tool.', 'woocommerce-services' ),
+			'desc_tip'    => __( 'If you activate binary mode you will not be able to leave pending payments. This can affect fraud prevention. Leave it idle to be backed by our own tool.', 'woocommerce-mercadopago' ),
 			'options'     => array(
 				'yes' => __( 'Yes', 'woocommerce-mercadopago' ),
 				'no'  => __( 'No', 'woocommerce-mercadopago' ),

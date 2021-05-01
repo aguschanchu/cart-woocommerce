@@ -1,5 +1,9 @@
 CHANGELOG:
 == Changelog ==
+= v5.1.1 (22/04/2021) =
+* Features
+ - Added WooCommerce linter
+
 = v5.1.0 (29/03/2021) =
 * Features
  - Added new Pix Gateway for Brazil
