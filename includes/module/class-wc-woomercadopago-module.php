@@ -240,6 +240,7 @@ class WC_WooMercadoPago_Module extends WC_WooMercadoPago_Configs {
 		include_once dirname( __FILE__ ) . '/preference/class-wc-woomercadopago-preference-ticket.php';
 		include_once dirname( __FILE__ ) . '/preference/class-wc-woomercadopago-preference-pix.php';
 		include_once dirname( __FILE__ ) . '/preference/analytics/class-wc-woomercadopago-preferenceanalytics.php';
+		include_once dirname( __FILE__ ) . '/preference/class-wc-woomercadopago-preference-custom-wallet-button.php';
 	}
 
 	/**
@@ -569,7 +570,7 @@ class WC_WooMercadoPago_Module extends WC_WooMercadoPago_Configs {
 		$is_subscription = false;
 		if ( 1 === count( $items ) ) {
 			foreach ( $items as $cart_item_key => $cart_item ) {
-				$is_recurrent = ( method_exists( $cart_item, 'get_meta' ) ) ?
+				$is_recurrent = ( is_object( $cart_item ) && method_exists( $cart_item, 'get_meta' ) ) ?
 					$cart_item->get_meta( '_used_gateway' ) : get_post_meta( $cart_item['product_id'], '_mp_recurring_is_recurrent', true );
 				if ( 'yes' === $is_recurrent ) {
 					$is_subscription = true;
@@ -671,4 +672,19 @@ class WC_WooMercadoPago_Module extends WC_WooMercadoPago_Configs {
 		}
 		return $mobile;
 	}
+
+	/**
+	 *
+	 * Get notification type by the payment class
+	 *
+	 * @return string
+	 */
+	public static function get_notification_type( $notification_type ) {
+		$types['WC_WooMercadoPago_Basic_Gateway']  = 'ipn';
+		$types['WC_WooMercadoPago_Custom_Gateway'] = 'webhook';
+		$types['WC_WooMercadoPago_Pix_Gateway']    = 'webhook';
+		$types['WC_WooMercadoPago_Ticket_Gateway'] = 'webhook';
+		return $types[$notification_type];
+	}
+
 }

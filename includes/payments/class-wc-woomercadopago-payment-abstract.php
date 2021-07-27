@@ -135,7 +135,7 @@ class WC_WooMercadoPago_Payment_Abstract extends WC_Payment_Gateway {
 	 *
 	 * @var string
 	 */
-	public $installments;
+	public $installments = 1;
 
 	/**
 	 * Form fields
