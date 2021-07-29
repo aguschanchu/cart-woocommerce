@@ -404,7 +404,7 @@ class WC_WooMercadoPago_Custom_Gateway extends WC_WooMercadoPago_Payment_Abstrac
 			$response = $this->process_custom_checkout_flow( $custom_checkout, $order );
 		}
 
-		if ($response) {
+		if ( $response ) {
 			return $response;
 		}
 

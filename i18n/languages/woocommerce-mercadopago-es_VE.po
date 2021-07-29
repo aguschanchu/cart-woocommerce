@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the Mercado Pago payments for WooCommerce plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Mercado Pago payments for WooCommerce 5.1.1\n"
+"Project-Id-Version: Mercado Pago payments for WooCommerce 5.2.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-mercadopago\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-07-19 15:21-0300\n"
+"PO-Revision-Date: 2021-07-28 17:07-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_AR\n"
@@ -512,10 +512,8 @@ msgid "A problem was occurred when processing your payment. Are you sure you hav
 msgstr "El problemas ocurrió cuando se procesaba su pago. Está seguro de haber cargado la información en el formulario?"
 
 #: ../../includes/payments/class-wc-woomercadopago-payment-abstract.php:580
-#, fuzzy
-#| msgid "Fill in your credentials to enable payment methods."
 msgid "Configure your credentials to enable Mercado Pago payment methods."
-msgstr "Completa tus credenciales para habilitar los medios de pago."
+msgstr "Configura tus credenciales para habilitar los métodos de pago de Mercado Pago."
 
 #. translators: %s url
 #: ../../includes/payments/class-wc-woomercadopago-payment-abstract.php:600
@@ -822,6 +820,8 @@ msgid ""
 "IPN (Instant Payment Notification) is a notification of events that take place on your platform and that is sent from one server to another through an HTTP POST call. See more information in our "
 "guides."
 msgstr ""
+"IPN (Instant Payment Notification) es una notificación de eventos que tienen lugar en su plataforma y que se envía de un servidor a otro a través de una llamada HTTP POST. Vea más información en "
+"nuestras guías."
 
 #: ../../includes/payments/class-wc-woomercadopago-payment-abstract.php:1368
 msgid "Edit these advanced fields only when you want to modify the preset values."
@@ -854,7 +854,7 @@ msgstr "Acepta y rechaza pagos de forma automática. ¿Quieres que lo activemos?
 
 #: ../../includes/payments/class-wc-woomercadopago-payment-abstract.php:1420
 msgid "If you activate binary mode you will not be able to leave pending payments. This can affect fraud prevention. Leave it idle to be backed by our own tool."
-msgstr ""
+msgstr "Si activa el modo binario no podrá dejar pagos pendientes. Esto puede afectar la prevención del fraude. Déjelo inactivo para que sea respaldado por nuestra propia herramienta."
 
 #: ../../includes/payments/class-wc-woomercadopago-payment-abstract.php:1435
 msgid "Discounts per purchase with Mercado Pago"

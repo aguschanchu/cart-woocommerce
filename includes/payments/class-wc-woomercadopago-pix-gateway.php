@@ -483,12 +483,12 @@ class WC_WooMercadoPago_Pix_Gateway extends WC_WooMercadoPago_Payment_Abstract {
 						}
 						// Shows some info in checkout page.
 						$order->add_order_note(
-							'Mercado Pago: ' . 
-							__( 'The customer has not paid yet.', 'woocommerce-mercadopago' )	
+							'Mercado Pago: ' .
+							__( 'The customer has not paid yet.', 'woocommerce-mercadopago' )
 						);
 						if ( 'pix' === $response['payment_method_id'] ) {
-							$order->add_order_note( 
-								'<div style="text-align: justify;"><p>Mercado Pago: ' . __( 'Now you just need to pay with PIX to finalize your purchase.', 'woocommerce-mercadopago' ) . ' ' . 
+							$order->add_order_note(
+								'<div style="text-align: justify;"><p>Mercado Pago: ' . __( 'Now you just need to pay with PIX to finalize your purchase.', 'woocommerce-mercadopago' ) . ' ' .
 								__( 'Scan the QR code below or copy and paste the code into your bank\'s application.', 'woocommerce-mercadopago' ) . '</small></p>',
 								1,
 								false
@@ -620,24 +620,24 @@ class WC_WooMercadoPago_Pix_Gateway extends WC_WooMercadoPago_Payment_Abstract {
 	 *
 	 * @return string
 	 */
-	public function get_pix_template ( $order, $sent_to_admin, $plain_text, $email ) {
+	public function get_pix_template( $order, $sent_to_admin, $plain_text, $email ) {
 
 		$pix_on = (int) array_pop( get_post_meta( $order->get_id(), 'pix_on' ));
 
 		if ( 1 === $pix_on ) {
-			
-		$qr_code         = 	array_pop( get_post_meta( $order->get_id(), 'mp_pix_qr_code' ) );
-		$qr_image        = 	array_pop( get_post_meta( $order->get_id(), 'mp_pix_qr_base64' ) );
-		$src             = 	'data:image/jpeg;base64';
-		$expiration_date = 	array_pop( get_post_meta( $order->get_id(), 'checkout_pix_date_expiration') );
+
+		$qr_code         = array_pop( get_post_meta( $order->get_id(), 'mp_pix_qr_code' ) );
+		$qr_image        = array_pop( get_post_meta( $order->get_id(), 'mp_pix_qr_base64' ) );
+		$src             = 'data:image/jpeg;base64';
+		$expiration_date = array_pop( get_post_meta( $order->get_id(), 'checkout_pix_date_expiration') );
 
 		$pix_template = wc_get_template(
 			'pix/pix-image-template.php',
 			array(
-				'src'   			   => $src,
-				'qr_image'			   => $qr_image,
-				'qr_code' 			   => $qr_code,
-				'expiration_date' 	   => $expiration_date,
+				'src'                  => $src,
+				'qr_image'             => $qr_image,
+				'qr_code'              => $qr_code,
+				'expiration_date'      => $expiration_date,
 				'text_expiration_date' => __( 'Code valid for ', 'woocommerce-mercadopago' ),
 			),
 			'',
@@ -646,7 +646,7 @@ class WC_WooMercadoPago_Pix_Gateway extends WC_WooMercadoPago_Payment_Abstract {
 
 		return $pix_template;
 
-		} 
+		}
 
 	}
 

@@ -126,7 +126,7 @@ class WC_WooMercadoPago_Hook_Custom extends WC_WooMercadoPago_Hook_Abstract {
 	public function render_order_form( $order_id ) {
 		$isWallet = get_query_var('wallet_button', false);
 
-		if ($isWallet) {
+		if ( $isWallet ) {
 			/**
 			 * WooCommerce Order
 			 *
