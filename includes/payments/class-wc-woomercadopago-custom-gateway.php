@@ -42,7 +42,7 @@ class WC_WooMercadoPago_Custom_Gateway extends WC_WooMercadoPago_Payment_Abstrac
 		$this->description        = __( 'Accept card payments on your website with the best possible financing and maximize the conversion of your business. With personalized checkout your customers pay without leaving your store!', 'woocommerce-mercadopago' );
 		$this->form_fields        = array();
 		$this->method_title       = __( 'Mercado Pago - Custom Checkout', 'woocommerce-mercadopago' );
-		$this->title              = __( 'Pay with debit and credit cards', 'woocommerce-mercadopago' );
+		$this->title              = $this->get_option_mp( 'title', __( 'Pay with debit and credit cards', 'woocommerce-mercadopago' ) );
 		$this->method_description = $this->description;
 		$this->coupon_mode        = $this->get_option_mp( 'coupon_mode', 'no' );
 		$this->wallet_button      = $this->get_option_mp( 'wallet_button', 'yes' );
@@ -110,7 +110,6 @@ class WC_WooMercadoPago_Custom_Gateway extends WC_WooMercadoPago_Payment_Abstrac
 	public function get_fields_sequence() {
 		return array(
 			// Necessary to run.
-			'title',
 			'description',
 			// Checkout de pagos con tarjetas de débito y crédito<br> Aceptá pagos al instante y maximizá la conversión de tu negocio.
 			'checkout_custom_header',
@@ -127,14 +126,14 @@ class WC_WooMercadoPago_Custom_Gateway extends WC_WooMercadoPago_Payment_Abstrac
 			'checkout_credential_mod_prod_description',
 			'checkout_credential_prod',
 			'checkout_credential_link',
-			'checkout_credential_title_test',
-			'checkout_credential_description_test',
-			'_mp_public_key_test',
-			'_mp_access_token_test',
 			'checkout_credential_title_prod',
 			'checkout_credential_description_prod',
 			'_mp_public_key_prod',
 			'_mp_access_token_prod',
+			'checkout_credential_title_test',
+			'checkout_credential_description_test',
+			'_mp_public_key_test',
+			'_mp_access_token_test',
 			// No olvides de homologar tu cuenta.
 			'checkout_homolog_title',
 			'checkout_homolog_subtitle',
@@ -153,6 +152,7 @@ class WC_WooMercadoPago_Custom_Gateway extends WC_WooMercadoPago_Payment_Abstrac
 			'checkout_custom_payments_title',
 			'checkout_payments_subtitle',
 			'enabled',
+			'title',
 			WC_WooMercadoPago_Helpers_CurrencyConverter::CONFIG_KEY,
 			'wallet_button',
 			// Advanced configuration of the personalized payment experience.

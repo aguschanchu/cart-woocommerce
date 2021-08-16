@@ -611,8 +611,6 @@ class WC_WooMercadoPago_Payment_Abstract extends WC_Payment_Gateway {
 		$this->init_form_fields();
 		$this->init_settings();
 		$form_fields                           = array();
-		$form_fields['title']                  = $this->field_title();
-		$form_fields['description']            = $this->field_description();
 		$form_fields['checkout_steps']         = $this->field_checkout_steps();
 		$form_fields['checkout_country_title'] = $this->field_checkout_country_title();
 		$form_fields['checkout_country']       = $this->field_checkout_country( $this->wc_country, $this->checkout_country );
@@ -653,6 +651,8 @@ class WC_WooMercadoPago_Payment_Abstract extends WC_Payment_Gateway {
 				$form_fields['checkout_advanced_settings']             = $this->field_checkout_advanced_settings();
 				$form_fields['_mp_debug_mode']                         = $this->field_debug_mode();
 				$form_fields['enabled']                                = $this->field_enabled( $label );
+				$form_fields['title']                                  = $this->field_title();
+				$form_fields['description']                            = $this->field_description();
 				$form_fields['_mp_custom_domain']                      = $this->field_custom_url_ipn();
 				$form_fields['gateway_discount']                       = $this->field_gateway_discount();
 				$form_fields['commission']                             = $this->field_commission();
@@ -684,8 +684,10 @@ class WC_WooMercadoPago_Payment_Abstract extends WC_Payment_Gateway {
 		$field_title = array(
 			'title'       => __( 'Title', 'woocommerce-mercadopago' ),
 			'type'        => 'text',
-			'description' => '',
-			'class'       => 'hidden-field-mp-title mp-hidden-field',
+			'description' => __('Change the display text in Checkout, maximum characters: 85', 'woocommerce-mercadopago'),
+			'maxlength'   => 100,
+			'desc_tip'    => __( 'If you change the display text, no translatation will be available', 'woocommerce-mercadopago' ),
+			'class'       => 'limit-title-max-length',
 			'default'     => $this->title,
 		);
 		return $field_title;
@@ -700,7 +702,7 @@ class WC_WooMercadoPago_Payment_Abstract extends WC_Payment_Gateway {
 		$field_description = array(
 			'title'       => __( 'Description', 'woocommerce-mercadopago' ),
 			'type'        => 'text',
-			'class'       => 'hidden-field-mp-desc mp-hidden-field',
+			'class'       => 'hidden-field-mp-desc',
 			'description' => '',
 			'default'     => $this->method_description,
 		);

@@ -441,11 +441,15 @@ abstract class WC_WooMercadoPago_Preference_Abstract extends WC_Payment_Gateway 
 	/**
 	 * Get notification type
 	 *
-	 * @return mixed
+	 * @param $notification_url
+	 * @param $notification_class
+	 *
+	 * @return string
 	 */
 	public function get_notification_type( $notification_url, $notification_class ) {
-		$type = WC_WooMercadoPago_Module::get_notification_type($notification_class);
-		return $notification_url . '?source_news=' . $type;
+		$type               = WC_WooMercadoPago_Module::get_notification_type($notification_class);
+		$url_join_character = preg_match('#/wc-api/#', $notification_url) ? '?' : '&';
+		return sprintf('%s%ssource_news=%s', $notification_url, $url_join_character, $type);
 	}
 
 	/**
